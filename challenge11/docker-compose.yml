@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+    code_audit_challenge11:
+        build: .
+        command: /start.sh
+        restart: unless-stopped
+        ports:
+            - 23121:80

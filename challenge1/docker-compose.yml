@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+    code_audit_challenge1:
+        build: .
+        restart: unless-stopped
+        ports:
+            - 23111:80

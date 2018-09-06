@@ -1,0 +1,25 @@
+<?php
+if($_POST[user] && $_POST[pass]) {
+	$conn = mysql_connect("********", "*****", "********");
+	mysql_select_db("challenges") or die("Could not select database");
+	if ($conn->connect_error) {
+		die("Connection failed: " . mysql_error($conn));
+}
+$user = $_POST[user];
+$pass = md5($_POST[pass]);
+$sql = "select pwd from interest where uname='$user'";
+$query = mysql_query($sql);
+if (!$query) {
+	printf("Error: %s\n", mysql_error($conn));
+	exit();
+}
+$row = mysql_fetch_array($query, MYSQL_ASSOC);
+//echo $row["pwd"];
+  if (($row[pwd]) && (!strcasecmp($pass, $row[pwd]))) {
+	echo "<p>Logged in! Key:************** </p>";
+}
+else {
+    echo("<p>Log in failure!</p>");
+  }
+}
+?>
